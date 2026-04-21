@@ -15,3 +15,4 @@ cat > README.md << 'EOF'
 pytest tests/ --cov=src
 Автор
 Александр
+ 
