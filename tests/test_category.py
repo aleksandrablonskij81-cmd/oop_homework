@@ -38,3 +38,11 @@ class TestCategory:
         result = category.products
         assert "Телефон, 30000 руб. Остаток: 5 шт." in result
         assert "Чехол, 1000 руб. Остаток: 15 шт." in result
+
+    def test_str_method(self):
+        products = [
+            Product("Телефон", "Смартфон", 30000, 5),
+            Product("Чехол", "Защитный", 1000, 15)
+        ]
+        category = Category("Электроника", "Гаджеты", products)
+        assert str(category) == "Электроника, количество продуктов: 20 шт."
