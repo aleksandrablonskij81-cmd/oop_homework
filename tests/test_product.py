@@ -1,3 +1,4 @@
+import pytest
 
 from src.product import Product
 
@@ -41,3 +42,18 @@ class TestProduct:
         assert product.description == "Беспроводные"
         assert product.price == 2500
         assert product.quantity == 30
+
+    def test_str_method(self):
+        product = Product("Телефон", "Смартфон", 30000, 5)
+        assert str(product) == "Телефон, 30000 руб. Остаток: 5 шт."
+
+    def test_add_method(self):
+        product1 = Product("Товар1", "Описание1", 100, 10)
+        product2 = Product("Товар2", "Описание2", 200, 2)
+        result = product1 + product2
+        assert result == 100 * 10 + 200 * 2
+
+    def test_add_method_wrong_type(self):
+        product = Product("Телефон", "Смартфон", 30000, 5)
+        with pytest.raises(TypeError, match="Можно складывать только объекты Product"):
+            product + 100
