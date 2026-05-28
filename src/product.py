@@ -2,7 +2,7 @@ class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
-        self.__price = price  # приватный атрибут
+        self.__price = price
         self.quantity = quantity
 
     @property
@@ -33,24 +33,26 @@ class Product:
 
     def __add__(self, other):
         """Сложение товаров по стоимости (только для одинаковых классов)"""
-        if type(self) != type(other):
+        if type(self) is not type(other):
             raise TypeError("Нельзя складывать товары разных классов")
         return (self.price * self.quantity) + (other.price * other.quantity)
 
-class Smartphone(Product):
-            """Класс смартфонов - наследник Product"""
 
-            def __init__(self, name: str, description: str, price: float, quantity: int,
-                         efficiency: str, model: str, memory: int, color: str):
-                super().__init__(name, description, price, quantity)
-                self.efficiency = efficiency
-                self.model = model
-                self.memory = memory
-                self.color = color
+class Smartphone(Product):
+    """Класс смартфонов - наследник Product"""
+
+    def __init__(self, name: str, description: str, price: float, quantity: int,
+                 efficiency: str, model: str, memory: int, color: str):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
 
 
 class LawnGrass(Product):
     """Класс газонной травы - наследник Product"""
+
     def __init__(self, name: str, description: str, price: float, quantity: int,
                  country: str, germination_period: int, color: str):
         super().__init__(name, description, price, quantity)

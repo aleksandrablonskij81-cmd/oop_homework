@@ -18,7 +18,9 @@ class Category:
     def add_product(self, product) -> None:
         """Добавляет продукт в категорию с проверкой типа"""
         if not isinstance(product, Product):
-            raise TypeError("Можно добавлять только объекты класса Product или его наследников")
+            raise TypeError(
+                "Можно добавлять только объекты класса Product или его наследников"
+            )
         self.__products.append(product)
         Category.product_count += 1
 
@@ -27,10 +29,12 @@ class Category:
         """Геттер возвращает строку со всеми продуктами."""
         result = ""
         for product in self.__products:
-            result += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            result += (
+                f"{product.name}, {product.price} руб. Остаток: "
+                f"{product.quantity} шт.\n"
+            )
         return result
 
     def __str__(self) -> str:
         total_quantity = sum(product.quantity for product in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
-
