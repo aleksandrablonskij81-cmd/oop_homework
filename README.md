@@ -16,3 +16,34 @@ pytest tests/ --cov=src
 Автор
 Александр
  
+## Домашнее задание: наследование и ограничения
+
+### Реализованная функциональность
+
+- Созданы классы-наследники `Smartphone` и `LawnGrass` от базового класса `Product`
+- Добавлены дополнительные атрибуты:
+  - Для `Smartphone`: efficiency, model, memory, color
+  - Для `LawnGrass`: country, germination_period, color
+- Метод `__add__` доработан: теперь можно складывать только товары одинаковых классов (используется `type()`)
+- Метод `add_product` в классе `Category` защищён: теперь можно добавлять только объекты класса `Product` или его наследников (используется `isinstance()`)
+- Написаны тесты (pytest) с покрытием >75%
+
+### Пример использования
+
+```python
+from src.product import Product, Smartphone, LawnGrass
+from src.category import Category
+
+# Создание смартфона
+iphone = Smartphone("iPhone 15", "Флагман", 120000, 10,
+                    "A17 Pro", "15 Pro", 256, "чёрный")
+
+# Создание газонной травы
+grass = LawnGrass("Райграс", "Для газонов", 1500, 50,
+                  "Россия", 7, "зелёный")
+
+# Сложение одинаковых классов работает
+print(iphone + iphone)  # 1200000
+
+# Сложение разных классов вызывает TypeError
+# print(iphone + grass)  # TypeError
