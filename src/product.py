@@ -31,8 +31,29 @@ class Product:
     def __str__(self) -> str:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
-    def __add__(self, other) -> float:
-        if not isinstance(other, Product):
-            raise TypeError("Можно складывать только объекты Product")
-        return self.price * self.quantity + other.price * other.quantity
+    def __add__(self, other):
+        """Сложение товаров по стоимости (только для одинаковых классов)"""
+        if type(self) != type(other):
+            raise TypeError("Нельзя складывать товары разных классов")
+        return (self.price * self.quantity) + (other.price * other.quantity)
 
+class Smartphone(Product):
+            """Класс смартфонов - наследник Product"""
+
+            def __init__(self, name: str, description: str, price: float, quantity: int,
+                         efficiency: str, model: str, memory: int, color: str):
+                super().__init__(name, description, price, quantity)
+                self.efficiency = efficiency
+                self.model = model
+                self.memory = memory
+                self.color = color
+
+
+class LawnGrass(Product):
+    """Класс газонной травы - наследник Product"""
+    def __init__(self, name: str, description: str, price: float, quantity: int,
+                 country: str, germination_period: int, color: str):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
