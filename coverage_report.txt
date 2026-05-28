@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.3, pytest-9.0.3, pluggy-1.6.0
+rootdir: /Users/aleksandr/Desktop/oop_homework
+configfile: pyproject.toml
+plugins: anyio-4.12.1, cov-7.1.0
+collected 19 items
+
+tests/test_category.py ......                                            [ 31%]
+tests/test_product.py .............                                      [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.3-final-0 _______________
+
+Name                     Stmts   Miss  Cover
+--------------------------------------------
+main.py                     42     42     0%
+src/__init__.py              0      0   100%
+src/category.py             25      1    96%
+src/product.py              36      0   100%
+tests/__init__.py            0      0   100%
+tests/test_category.py      34      0   100%
+tests/test_product.py       62      0   100%
+--------------------------------------------
+TOTAL                      199     43    78%
+============================== 19 passed in 0.03s ==============================
