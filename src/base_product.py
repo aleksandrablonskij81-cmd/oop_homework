@@ -13,4 +13,3 @@ class BaseProduct(ABC):
     def __add__(self, other):
         """Абстрактный метод сложения"""
         pass
-    
