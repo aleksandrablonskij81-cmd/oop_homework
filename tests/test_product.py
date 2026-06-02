@@ -89,3 +89,33 @@ def test_category_products_getter():
     # Проверяем, что в строковом выводе есть название продукта
     assert "Test" in category.products
 
+def test_base_product_abstract():
+    """Тест: нельзя создать экземпляр абстрактного класса BaseProduct"""
+    from src.base_product import BaseProduct
+    with pytest.raises(TypeError):
+        BaseProduct()  # Должна быть ошибка
+
+
+def test_print_mixin_output(capsys):
+    """Тест: миксин печатает информацию при создании объекта"""
+    from src.product import Product
+    Product("ТестМиксин", "Описание", 500, 2)
+    captured = capsys.readouterr()
+    assert "Создан объект Product" in captured.out
+    assert "ТестМиксин" in captured.out
+
+
+def test_smartphone_inherits_from_base():
+    """Тест: Smartphone является наследником BaseProduct"""
+    from src.base_product import BaseProduct
+    from src.product import Smartphone
+    phone = Smartphone("XPhone", "", 1000, 1, "proc", "modelX", 64, "black")
+    assert isinstance(phone, BaseProduct) is True
+
+
+def test_lawn_grass_inherits_from_base():
+    """Тест: LawnGrass является наследником BaseProduct"""
+    from src.base_product import BaseProduct
+    from src.product import LawnGrass
+    grass = LawnGrass("Grass", "", 500, 10, "RU", 7, "green")
+    assert isinstance(grass, BaseProduct) is True
