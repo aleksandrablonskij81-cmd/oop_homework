@@ -1,6 +1,6 @@
 import pytest
-
-from src.product import Product
+from src.product import Product, Smartphone, LawnGrass
+from src.category import Category
 
 
 class TestProduct:
@@ -55,5 +55,37 @@ class TestProduct:
 
     def test_add_method_wrong_type(self):
         product = Product("Телефон", "Смартфон", 30000, 5)
-        with pytest.raises(TypeError, match="Можно складывать только объекты Product"):
+        with pytest.raises(TypeError, match="Нельзя складывать товары разных классов"):
             product + 100
+def test_smartphone_inheritance():
+    """Тест: Smartphone является наследником Product"""
+    phone = Smartphone("TestPhone", "desc", 10000, 5, "proc", "model", 128, "red")
+    assert isinstance(phone, Product) is True
+
+
+def test_lawn_grass_inheritance():
+    """Тест: LawnGrass является наследником Product"""
+    grass = LawnGrass("TestGrass", "desc", 1000, 10, "Russia", 7, "green")
+    assert isinstance(grass, Product) is True
+
+
+def test_product_price_getter():
+    """Тест геттера цены"""
+    product = Product("Test", "desc", 5000, 3)
+    assert product.price == 5000
+
+
+def test_product_price_setter():
+    """Тест сеттера цены (неотрицательная цена)"""
+    product = Product("Test", "desc", 5000, 3)
+    product.price = 7000
+    assert product.price == 7000
+
+
+def test_category_products_getter():
+    """Тест геттера продуктов категории"""
+    product = Product("Test", "desc", 100, 1)
+    category = Category("TestCat", "desc", [product])
+    # Проверяем, что в строковом выводе есть название продукта
+    assert "Test" in category.products
+
