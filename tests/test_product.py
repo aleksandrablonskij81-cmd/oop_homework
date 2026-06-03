@@ -119,3 +119,9 @@ def test_lawn_grass_inherits_from_base():
     from src.product import LawnGrass
     grass = LawnGrass("Grass", "", 500, 10, "RU", 7, "green")
     assert isinstance(grass, BaseProduct) is True
+
+def test_product_zero_quantity():
+    """Тест: создание товара с нулевым количеством вызывает ValueError"""
+    from src.product import Product
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Тест", "Описание", 100, 0)

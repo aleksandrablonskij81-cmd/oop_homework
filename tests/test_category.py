@@ -1,4 +1,4 @@
-
+import pytest
 from src.category import Category
 from src.product import Product
 
@@ -46,3 +46,15 @@ class TestCategory:
         ]
         category = Category("Электроника", "Гаджеты", products)
         assert str(category) == "Электроника, количество продуктов: 20 шт."
+
+    def test_middle_price(self):
+        """Тест: средний ценник товаров в категории"""
+        product1 = Product("Товар1", "Описание", 100, 1)
+        product2 = Product("Товар2", "Описание", 200, 1)
+        category = Category("Тест", "Описание", [product1, product2])
+        assert category.middle_price() == 150
+
+    def test_middle_price_empty(self):
+        """Тест: средний ценник пустой категории возвращает 0"""
+        category = Category("Тест", "Описание", [])
+        assert category.middle_price() == 0
